@@ -36,6 +36,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
 
@@ -49,6 +50,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
         registry.addResourceHandler("/html/**").addResourceLocations("/html/");
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+        registry.addResourceHandler("/javascript/**").addResourceLocations("/javascript/");
     }
 
     @Bean
@@ -57,6 +59,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/html/");
         templateResolver.setSuffix(".html");
+        templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCacheable(false);
         return templateResolver;
