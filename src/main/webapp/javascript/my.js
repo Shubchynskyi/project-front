@@ -1,51 +1,51 @@
 const requestURL = "/rest/players";
 
 
-const myArray = [
-    {
-        "id": 55,
-        "name": "Ниус",
-        "title": "Приходящий Без Шума",
-        "race": "HOBBIT",
-        "profession": "ROGUE",
-        "birthday": 1244497480000,
-        "banned": false,
-        "level": 33
-    },
-    {
-        "id": 66,
-        "name": "Никрашш",
-        "title": "НайтВульф",
-        "race": "ORC",
-        "profession": "WARRIOR",
-        "birthday": 1152424240000,
-        "banned": false,
-        "level": 58
-    },
-    {
-        "id": 77,
-        "name": "Эззэссэль",
-        "title": "шипящая",
-        "race": "DWARF",
-        "profession": "CLERIC",
-        "birthday": 1243201400000,
-        "banned": true,
-        "level": 3
-    },
-];
-
+// const myArray = [
+//     {
+//         "id": 55,
+//         "name": "Ниус",
+//         "title": "Приходящий Без Шума",
+//         "race": "HOBBIT",
+//         "profession": "ROGUE",
+//         "birthday": 1244497480000,
+//         "banned": false,
+//         "level": 33
+//     },
+//     {
+//         "id": 66,
+//         "name": "Никрашш",
+//         "title": "НайтВульф",
+//         "race": "ORC",
+//         "profession": "WARRIOR",
+//         "birthday": 1152424240000,
+//         "banned": false,
+//         "level": 58
+//     },
+//     {
+//         "id": 77,
+//         "name": "Эззэссэль",
+//         "title": "шипящая",
+//         "race": "DWARF",
+//         "profession": "CLERIC",
+//         "birthday": 1243201400000,
+//         "banned": true,
+//         "level": 3
+//     },
+// ];
+// appendArrayToTable(myArray);
 
 fetch(requestURL)
     .then(response => response.json())
     .then(data => {
-        console.log("JSON.stringify = " + JSON.stringify(data));
+        console.log("JSON.stringify = " + JSON.stringify(data)); //for test only
         appendArrayToTable(data);
     });
 
 const myArray2 = fetch(requestURL)
         .then(response => response.json())
         .then(data => {
-            console.log("JSON.stringify = " + JSON.stringify(data));
+            console.log("JSON.stringify = " + JSON.stringify(data)); //for test only
             return data;
         });
 
@@ -53,9 +53,9 @@ appendArrayToTable(myArray2);
 
 function appendArrayToTable(data) {
     let table = document.getElementById("tbody");
-        console.log("Вошел в метод appendArrayToTable")
+        console.log("Вошел в метод appendArrayToTable") //for test only
     for (let i = 0; i < data.length; i++) {
-        console.log("внутри цикла, итерация " + i);
+        console.log("внутри цикла, итерация " + i); //for test only
         let birthdayDate = new Date(data[i].birthday);
 
         const row = `<tr>
@@ -68,7 +68,7 @@ function appendArrayToTable(data) {
 						<td>${birthdayDate.toLocaleDateString()}</td>
 						<td>${data[i].banned}</td>
 					  </tr>`;
-        console.log("собрана строка - " + row);
+        console.log("собрана строка - " + row); //for test only
 
         table.innerHTML += row
 
