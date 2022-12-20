@@ -5,15 +5,38 @@
 <!--    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>-->
     <link href="/css/my.css" rel="stylesheet" type="text/css">
 </head>
-<body id="body">
+<body>
 <h1>RPG admin panel</h1>
-
+<h2>Account list:</h2>
+<p>Count per page:
+        <select onchange="getRequestForTable();" id="select_count" name="count_per_page">
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+</p>
 <table id="mainTable">
-    <tr> <th>#</th> <th>Name</th> <th>Title</th> <th>Race</th> <th>Profession</th> <th>Level</th> <th>Birthday</th> <th>Banned</th> </tr>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Race</th>
+        <th>Profession</th>
+        <th>Level</th>
+        <th>Birthday</th>
+        <th>Banned</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
     <tbody id="tbody"></tbody>
 </table>
 
+<div id="paging_button"></div>
+<!--<button onclick="appendRowsByClick()">Try it</button>-->
+
 <script src="../javascript/my.js"></script>
+<!--<script src="../javascript/myjs.js"></script>-->
 </body>
 </html>
 
