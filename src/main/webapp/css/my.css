@@ -2,6 +2,39 @@
 /*    border: 1px solid black;*/
 /*}*/
 
+/*.create_form_div {*/
+/*    padding-bottom: 10px;*/
+/*}*/
+
+.create_form_div label {
+    display: block;
+    float: left;
+    width: 100px;
+    /*height: 10px;*/
+}
+
+.main_header,
+.second_header {
+    text-align: center;
+    color: #192151;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-shadow: 2px 2px 4px rgba(179, 147, 211, 0.1),
+    3px 4px 4px rgba(179, 147, 211, 0.15),
+    4px 6px 4px rgba(179, 147, 211, 0.2);
+}
+
+
+.second_header,
+.select_page {
+    text-align: center;
+    margin-right: 700px;"
+}
+
+.pages {
+    text-align: center;
+    margin: fill;
+}
+
 .page_button {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -32,6 +65,7 @@
     outline: none; /* Для синий ободки */
     border: 0;
     background: transparent;
+    cursor: pointer;
 }
 
 .table_id {
@@ -97,10 +131,7 @@ table {
     /*height: 700px;*/
 }
 
-#paging_button {
-    margin: auto;
-    border: 1px solid red;
-}
+
 
 th {
     border: 1px solid #fdca01;
@@ -117,7 +148,7 @@ td {
 
 td, th, .page_button {
     opacity: 0;
-    animation: ani 3.1s forwards;
+    animation: ani 1.1s forwards;
 }
 
 @keyframes ani {
@@ -125,9 +156,11 @@ td, th, .page_button {
     100% {opacity: 1;}
 }
 
-#select_count {
 
-}
+
+
+
+/*                 popup                */
 
 #blablabla {
     display: none;

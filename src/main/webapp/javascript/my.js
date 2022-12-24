@@ -14,11 +14,12 @@ function createAccount() {
     let form = document.getElementById("createAccountForm");
     form.innerHTML = "";
     {
+        let div = document.createElement("div");
+        div.setAttribute("class", "create_form_div");
         let label = document.createElement("label");
-        let input = document.createElement("input");
-        let br = document.createElement("br");
         label.setAttribute("for", "new_name_create");
         label.innerText = "Name:";
+        let input = document.createElement("input");
         input.setAttribute("type", "text");
         input.setAttribute("id", "new_name_create");
         input.setAttribute("class", "createForm");
@@ -31,11 +32,16 @@ function createAccount() {
                 input.value = '';
             }
         }
-        form.appendChild(label);
-        form.appendChild(input);
+
+        div.appendChild(label);
+        div.appendChild(input);
+        form.appendChild(div);
+        let br = document.createElement("br");
         form.appendChild(br);
     }
     {
+        let div = document.createElement("div");
+        div.setAttribute("class", "create_form_div");
         let label = document.createElement("label");
         let input = document.createElement("input");
         let br = document.createElement("br");
@@ -53,11 +59,14 @@ function createAccount() {
                 input.value = '';
             }
         }
-        form.appendChild(label);
-        form.appendChild(input);
+        div.appendChild(label);
+        div.appendChild(input);
+        form.appendChild(div);
         form.appendChild(br);
     }
     {
+        let div = document.createElement("div");
+        div.setAttribute("class", "create_form_div");
         let label = document.createElement("label");
         let select = document.createElement("select");
         let br = document.createElement("br");
@@ -73,11 +82,14 @@ function createAccount() {
             select.appendChild(option);
         }
 
-        form.appendChild(label);
-        form.appendChild(select);
+        div.appendChild(label);
+        div.appendChild(select);
+        form.appendChild(div);
         form.appendChild(br);
     }
     {
+        let div = document.createElement("div");
+        div.setAttribute("class", "create_form_div");
         let label = document.createElement("label");
         let select = document.createElement("select");
         let br = document.createElement("br");
@@ -93,11 +105,14 @@ function createAccount() {
             select.appendChild(option);
         }
 
-        form.appendChild(label);
-        form.appendChild(select);
+        div.appendChild(label);
+        div.appendChild(select);
+        form.appendChild(div);
         form.appendChild(br);
     }
     {
+        let div = document.createElement("div");
+        div.setAttribute("class", "create_form_div");
         let label = document.createElement("label");
         let input = document.createElement("input");
         let br = document.createElement("br");
@@ -111,11 +126,14 @@ function createAccount() {
         input.setAttribute("min", "1");
         input.setAttribute("max", "100");
         input.setAttribute("placeholder", "Number from 1 to 100")
-        form.appendChild(label);
-        form.appendChild(input);
+        div.appendChild(label);
+        div.appendChild(input);
+        form.appendChild(div);
         form.appendChild(br);
     }
     {
+        let div = document.createElement("div");
+        div.setAttribute("class", "create_form_div");
         let label = document.createElement("label");
         let input = document.createElement("input");
         let br = document.createElement("br");
@@ -129,11 +147,14 @@ function createAccount() {
         input.setAttribute("min", "2000-01-01");
         input.setAttribute("max", "3000-12-31");
         input.setAttribute("title", "From 1900 to 2100 year")
-        form.appendChild(label);
-        form.appendChild(input);
+        div.appendChild(label);
+        div.appendChild(input);
+        form.appendChild(div);
         form.appendChild(br);
     }
     {
+        let div = document.createElement("div");
+        div.setAttribute("class", "create_form_div");
         let label = document.createElement("label");
         let select = document.createElement("select");
         let br = document.createElement("br");
@@ -149,8 +170,9 @@ function createAccount() {
             select.appendChild(option);
         }
 
-        form.appendChild(label);
-        form.appendChild(select);
+        div.appendChild(label);
+        div.appendChild(select);
+        form.appendChild(div);
         form.appendChild(br);
     }
 
@@ -284,7 +306,8 @@ async function editCharacter(id) {
 
 async function updatePageData() {
     let page = await getCurrentPage();
-    let url = await getUrlWithPagesCount()
+    let url = await getUrlWithPagesCount();
+    url = url.concat("&pageNumber=" + page);
     await getRequestForTable(url, page);
 }
 
@@ -372,6 +395,9 @@ async function getButtons(url, pageCount) {
 
 /** fill the table with data **/
 async function getRequestForTable(urlForButton = null, pageNumber = 0) {
+    // /rest/players?pageSize=4
+    // 8
+
     let playersURL = await getUrlWithPagesCount();
 
     if (urlForButton == null) {
