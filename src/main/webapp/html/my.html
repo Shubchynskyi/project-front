@@ -2,38 +2,43 @@
 <head>
     <meta charset="utf-8">
     <title>RPG</title>
-<!--    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>-->
+    <!--    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>-->
     <link href="/css/my.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1>RPG admin panel</h1>
 <h2>Account list:</h2>
 <p>Count per page:
-        <select onchange="getRequestForTable();" id="select_count" name="count_per_page">
-            <option value="3">3</option>
-            <option value="4" selected>4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-        </select>
+    <label for="select_count"></label>
+    <select onchange="getRequestForTable();" id="select_count" name="count_per_page">
+        <option value="3">3</option>
+        <option value="4" selected>4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select>
 </p>
 <table id="mainTable">
     <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Title</th>
-        <th>Race</th>
-        <th>Profession</th>
-        <th>Level</th>
-        <th>Birthday</th>
-        <th>Banned</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th class="table_Id">#</th>
+        <th class="table_Name">Name</th>
+        <th class="table_Title">Title</th>
+        <th class="table_Race">Race</th>
+        <th class="table_Profession">Profession</th>
+        <th class="table_Level">Level</th>
+        <th class="table_Birthday">Birthday</th>
+        <th class="table_Banned">Banned</th>
+        <th class="table_Edit">Edit</th>
+        <th class="table_Delete">Delete</th>
     </tr>
     <tbody id="tbody"></tbody>
 </table>
 
 <div id="paging_button"></div>
 <!--<button onclick="appendRowsByClick()">Try it</button>-->
+<hr>
+
+<button id="createAccountButton">Create new Account</button>
+<form id="createAccountForm" onsubmit="createCharacter();return false"></form>
 
 <script src="../javascript/my.js"></script>
 <!--<script src="../javascript/myjs.js"></script>-->

@@ -2,15 +2,108 @@
 /*    border: 1px solid black;*/
 /*}*/
 
+.page_button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 2px 1px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.page_button {
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+}
+
+.page_button:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+.button {
+    outline: none; /* Для синий ободки */
+    border: 0;
+    background: transparent;
+}
+
+.table_id {
+    width: 30px;
+    height: 25px;
+    text-align: center;
+}
+.table_Name{
+    width: 75px;
+    height: 25px;
+    text-align: center;
+}
+.table_Title{
+    width: 200px;
+    height: 25px;
+    text-align: center;
+}
+.table_Race{
+    width: 75px;
+    height: 25px;
+    text-align: center;
+}
+.table_Profession{
+    width: 100px;
+    height: 25px;
+    text-align: center;
+}
+.table_Level{
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+.table_Birthday{
+    width: 100px;
+    height: 25px;
+    text-align: center;
+}
+.table_Banned{
+    width: 50px;
+    height: 25px;
+    text-align: center;
+}
+.table_Edit{
+    width: 50px;
+    height: 25px;
+    text-align: center;
+}
+.table_Delete{
+    width: 50px;
+    height: 25px;
+    text-align: center;
+}
+
 table {
     border-spacing: 1px 1px;
     padding: 1px 1px;
-    border: 1px solid black;
+    border: 1px solid #b8f897;
+}
 
+#mainTable {
+    margin: auto;
+    /*width: 900px;*/
+    /*height: 700px;*/
+}
+
+#paging_button {
+    margin: auto;
+    border: 1px solid red;
 }
 
 th {
-    border: 1px solid #0643f6;
+    border: 1px solid #fdca01;
     width: 50px;
     height: 29px;
     text-align: center;
@@ -19,5 +112,85 @@ th {
 }
 
 td {
-    border: 1px solid #24fd02;
+    border: 1px solid #e1b2fc;
+}
+
+td, th, .page_button {
+    opacity: 0;
+    animation: ani 3.1s forwards;
+}
+
+@keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+#select_count {
+
+}
+
+#blablabla {
+    display: none;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+}
+
+#blablabla.open {
+    display: block;
+}
+
+#blablabla.close {
+    display: none;
+}
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(17, 17, 17, 0.5);
+    transition: all 0.5s ease;
+    display: none;
+}
+
+.popup_open {
+    display: block;
+}
+
+.popup_close {
+    display: none;
+}
+
+.popup__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 10px;
+    max-width: 588px;
+    width: 100%;
+}
+
+.popup__wrapper {
+    padding: 40px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.createForm {
+    width: 300px;
+}
+
+.label_form {
+    width: 70px;
 }

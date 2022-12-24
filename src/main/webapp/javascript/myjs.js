@@ -245,7 +245,6 @@ async function editCharacter(id) {
     save_img.alt = "Button for save!!";
     let save_button = document.createElement("button");
     save_button.setAttribute("id", "save_button_" + id);
-    save_button.setAttribute("class", "button");
     save_button.onclick = await function () {
         return saveCharacter(id,
             input_name.value,
@@ -285,6 +284,7 @@ async function editCharacter(id) {
 async function updatePageData() {
     let page = await getCurrentPage();
     let url = await getUrlWithPagesCount()
+    url = url.concat("&pageNumber=" + page);
     await getRequestForTable(url, page);
 }
 
@@ -307,7 +307,7 @@ async function saveCharacter(id, name, title, race, profession, banned) {
     await updatePageData();
 }
 
-/** delete function **/
+/** delete function **/  //TODO error when delete last character on the last page
 async function deleteCharacter(id) {
     await fetch("/rest/players/" + id, {
         method: "DELETE",
@@ -317,22 +317,35 @@ async function deleteCharacter(id) {
     let pageCount = await getPageCount();
     let playerCount = await getPlayersCount();
 
+
+
+    //need to check next: if character last on last page, then page for request must be page = page-1
+
+    console.log((page > 0));
+    console.log((page === (pageCount - 1)) + " : " + page + " " + (pageCount - 1));
+
+    console.log(((playerCount % page) === 0));
+
     if ((page > 0) && (page === pageCount) && ((playerCount % page) === 0)) {
+        console.log("условия выполнены");
         page = page - 1;
+        console.log(page);
     }
 
     let url = await getUrlWithPagesCount()
     url = url.concat("&pageNumber=" + page);
+
+    console.log(url)
 
     await getRequestForTable(url, page);
 }
 
 /** get the current page **/
 function getCurrentPage() {
-    let currentPage = 0;
+    let currentPage = 1;
     let buttonRow = document.getElementById("paging_button").children;
     for (let i = 0; i < buttonRow.length; i++) {
-        if (buttonRow[i].style.color === "blue") {
+        if (buttonRow[i].style.color === "red") {
             currentPage = buttonRow[i].innerHTML.valueOf() - 1;
             return currentPage;
         }
@@ -362,7 +375,6 @@ async function getButtons(url, pageCount) {
         let button = document.createElement("button")
         button.innerHTML = (i + 1).toString();
         button.setAttribute("id", "button_" + i);
-        button.setAttribute("class", "page_button");
         button.onclick = function () {
             return getRequestForTable(urlForButton, i)
         };
@@ -372,25 +384,25 @@ async function getButtons(url, pageCount) {
 
 /** fill the table with data **/
 async function getRequestForTable(urlForButton = null, pageNumber = 0) {
+    let pageCount = await getPageCount();
+
     let playersURL = await getUrlWithPagesCount();
+    await getButtons(playersURL, pageCount)
+
 
     if (urlForButton == null) {
         urlForButton = playersURL;
-
-
     }
+
     await fetch(urlForButton)
         .then(response => response.json())
         .then(data => fillTableFromResponse(data));
-    let pageCount = await getPageCount();
-
-    await getButtons(playersURL, pageCount)
     if (pageCount <= 0) {
         alert("No characters or missing database");
     }
-    if (pageCount > 0) {
+    if (pageCount > 1) {
         let btn = document.getElementById("button_" + pageNumber);
-        btn.style.color = "blue";
+        btn.style.color = "red";
     }
 }
 
@@ -400,33 +412,31 @@ async function fillTableFromResponse(data) {
     for (let i = 0; i < data.length; i++) {
         let birthdayDate = new Date(data[i].birthday);
         const row = `<tr id="table_tr_id_${data[i].id}">
-                        <td id="td_id_${data[i].id}" class="table_Id">${data[i].id}</td>
+                        <td id="td_id_${data[i].id}">${data[i].id}</td>
 						<td id="td_name_${data[i].id}" 
-						    class="table_Name"
+						    class="td_${data[i].id}"
 						    >${data[i].name}</td>
 						<td id="td_title_${data[i].id}" 
-						     class="table_Title"
+						    class="td_${data[i].id}"
 						    >${data[i].title}</td>
 						<td id="td_race_${data[i].id}" 
-						     class="table_Race"
+						    class="td_${data[i].id}"
 						    >${data[i].race}</td>
 						<td id="td_profession_${data[i].id}" 
-						    class="table_Profession"
+						    class="td_${data[i].id}"
 						    >${data[i].profession}</td>
 						<td id="td_level_${data[i].id}"
-						class="table_Level"
 						    >${data[i].level}</td>
 						<td id="td_birthdayDate_${data[i].id}"
-						class="table_Birthday"
 						    >${birthdayDate.toLocaleDateString()}</td>
 						<td id="td_banned_${data[i].id}" 
-						    class="table_Banned"
+						    class="td_${data[i].id}"
 						    >${data[i].banned}</td>
-						<td id="td_edit_${data[i].id}" class="table_Edit"><button class="button" id="edit_button_${data[i].id}" onclick="editCharacter(${data[i].id})">
+						<td id="td_edit_${data[i].id}"><button id="edit_button_${data[i].id}" onclick="editCharacter(${data[i].id})">
 						    <img src="../img/edit.png" alt="Button for edit">
 						    </button>
 						    </td>
-					    <td id="td_delete_${data[i].id}" class="table_Delete"><button class="button" id="delete_button_${data[i].id}" onclick="deleteCharacter(${data[i].id})">
+					    <td id="td_delete_${data[i].id}"><button id="delete_button_${data[i].id}" onclick="deleteCharacter(${data[i].id})">
 						    <img src="../img/delete.png" alt="Button for delete">
 						    </button>
 						    </td>
@@ -439,4 +449,3 @@ async function fillTableFromResponse(data) {
 
     }
 }
-
