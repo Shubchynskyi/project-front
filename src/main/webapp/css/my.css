@@ -1,16 +1,78 @@
-/*table, td {*/
-/*    border: 1px solid black;*/
-/*}*/
+hr.separator {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, #f0f0f0, #00b9ff, #59d941, #f0f0f0);
+}
 
-/*.create_form_div {*/
-/*    padding-bottom: 10px;*/
-/*}*/
+.button_form_create,
+.button_form_cancel {
+    border-radius:15px;
+    border:1px solid #d6bcd6;
+    display:inline-block;
+    cursor:pointer;
+    color:#114b59;
+    font-family: Arial, serif;
+    font-size:17px;
+    font-weight:bold;
+    padding:7px 25px;
+    text-decoration:none;
+    text-shadow:0 1px 0 #e1e2ed;
+}
 
-.create_form_div label {
+.button_form_create {
+    width: 200px;
+    margin: 0 20px;
+    box-shadow: 3px 4px 0 0 #899599;
+    background: #ededed linear-gradient(to bottom, #ededed 5%, #26c706 100%);
+
+}
+.button_form_create:hover {
+    background: #26c706 linear-gradient(to bottom, #26c706 5%, #ededed 100%);
+}
+
+.button_form_create:active {
+    position:relative;
+    top:1px;
+}
+
+.button_form_cancel {
+    width: 200px;
+    margin: 0 20px;
+    box-shadow: 3px 4px 0 0 #899599;
+    background: #ededed linear-gradient(to bottom, #ededed 5%, #e30319 100%);
+}
+.button_form_cancel:hover {
+    background: #e30319 linear-gradient(to bottom, #e30319 5%, #ededed 100%);
+}
+.button_form_cancel:active {
+    position:relative;
+    top:1px;
+}
+
+#createAccountButton {
+    margin: 0 auto;
     display: block;
-    float: left;
-    width: 100px;
-    /*height: 10px;*/
+
+    box-shadow: 3px 4px 7px 1px #1564ad;
+    background: #79bbff linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    border-radius:8px;
+    border:2px solid #337bc4;
+    cursor:pointer;
+    color:#ffffff;
+    font-family: Georgia, serif;
+    font-size:16px;
+    font-weight:bold;
+    font-style:italic;
+    padding:13px 55px;
+    text-decoration:none;
+    text-shadow:0 1px 0 #528ecc;
+}
+#createAccountButton:hover {
+    background: #378de5 linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+}
+#createAccountButton:active {
+    position:relative;
+    top:1px;
 }
 
 .main_header,
@@ -22,7 +84,6 @@
     3px 4px 4px rgba(179, 147, 211, 0.15),
     4px 6px 4px rgba(179, 147, 211, 0.2);
 }
-
 
 .second_header,
 .select_page {
@@ -62,7 +123,7 @@
 }
 
 .button {
-    outline: none; /* Для синий ободки */
+    outline: none;
     border: 0;
     background: transparent;
     cursor: pointer;
@@ -127,11 +188,7 @@ table {
 
 #mainTable {
     margin: auto;
-    /*width: 900px;*/
-    /*height: 700px;*/
 }
-
-
 
 th {
     border: 1px solid #fdca01;
@@ -156,28 +213,33 @@ td, th, .page_button {
     100% {opacity: 1;}
 }
 
+.create_form_div label {
+    display: block;
+    float: left;
+    width: 100px;
+    height: 15px;
+}
+
 .createForm {
-    width: 300px;
+    width: 380px;
 }
 
 .label_form {
-    width: 70px;
+    width: 100px;
 }
-
-
 
 
 
 /*                 popup                */
 
-#blablabla {
+#form {
     display: none;
     animation-duration: 1.5s;
     animation-fill-mode: both;
     animation-name: fadeIn;
 }
 
-#blablabla.open {
+#div_for_popup.open {
     display: block;
 }
 
@@ -203,7 +265,7 @@ td, th, .page_button {
     transform: translate(-50%, -50%);
     background: #fff;
     border-radius: 10px;
-    max-width: 588px;
+    max-width: 560px;
     width: 100%;
 }
 

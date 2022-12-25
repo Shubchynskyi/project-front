@@ -4,33 +4,30 @@ const BANNED = ["false", "true"];
 
 getRequestForTable();
 
-
-////////////////////////// popup
-
-const button = document.querySelector('#createAccountButton');
-const form = document.querySelector('#blablabla');
-const popup = document.querySelector('.popup');
-
-button.addEventListener('click', () => {
-    form.classList.add('open');
-    popup.classList.add('popup_open');
-});
-
-/////////////////////////////
-
-
-
-
 let createAccountButton = document.getElementById("createAccountButton");
 createAccountButton.onclick = function () {
     createAccount();
-    document.getElementById("div_form").hidden = false;
-    // document.getElementById("createAccountForm").hidden = false;
+    const formForPopup = document.querySelector('#div_for_popup');
+    const popup = document.querySelector('.popup');
+    formForPopup.classList.add('open');
+    popup.classList.add('popup_open');
 }
 
 function createAccount() {
+    let div_form = document.getElementById("div_form");
+
+    div_form.innerHTML = `<div class="popup">
+        <div class="popup__container">
+            <div class="popup__wrapper">
+                <div id="div_for_popup">
+                    <form id="createAccountForm" onSubmit="createCharacter();return false"></form>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
     let form = document.getElementById("createAccountForm");
-    form.innerHTML = "";
+
     {
         let div = document.createElement("div");
         div.setAttribute("class", "create_form_div");
@@ -196,18 +193,19 @@ function createAccount() {
 
     let submit = document.createElement("input");
     submit.setAttribute("type", "submit");
+    submit.setAttribute("class", "button_form_create");
     submit.value = "Check and Create";
     form.appendChild(submit);
 
     let cancelButton = document.createElement("button");
     cancelButton.innerText = "Cancel";
+    cancelButton.setAttribute("type", "button");
+    cancelButton.setAttribute("class", "button_form_cancel");
     cancelButton.onclick = function () {
-        form.innerHTML = "";
-        document.getElementById("div_form").hidden = true;
+        div_form.innerHTML = "";
     }
     form.appendChild(cancelButton);
 
-    //
 
 }
 
@@ -265,7 +263,7 @@ async function editCharacter(id) {
     let form_name = document.createElement("form");
     name.innerHTML = "";
     name.appendChild(form_name.appendChild(input_name));
-    // TODO extract to function
+
     let title = document.getElementById("td_title_" + id);
     let input_title = document.createElement("input");
     input_title.setAttribute("value", title.innerHTML.toString());
@@ -332,7 +330,7 @@ async function updatePageData() {
     await getRequestForTable(url, page);
 }
 
-/** функция редактирования **/
+/** edit function **/
 async function saveCharacter(id, name, title, race, profession, banned) {
     await fetch("/rest/players/" + id, {
         method: "POST",
@@ -416,15 +414,10 @@ async function getButtons(url, pageCount) {
 
 /** fill the table with data **/
 async function getRequestForTable(urlForButton = null, pageNumber = 0) {
-    // /rest/players?pageSize=4
-    // 8
-
     let playersURL = await getUrlWithPagesCount();
 
     if (urlForButton == null) {
         urlForButton = playersURL;
-
-
     }
     await fetch(urlForButton)
         .then(response => response.json())
@@ -483,7 +476,6 @@ async function fillTableFromResponse(data) {
         if (pageCount <= 0) {
             alert("No characters or missing database");
         }
-
     }
 }
 
