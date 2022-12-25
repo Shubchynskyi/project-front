@@ -4,10 +4,28 @@ const BANNED = ["false", "true"];
 
 getRequestForTable();
 
+
+////////////////////////// popup
+
+const button = document.querySelector('#createAccountButton');
+const form = document.querySelector('#blablabla');
+const popup = document.querySelector('.popup');
+
+button.addEventListener('click', () => {
+    form.classList.add('open');
+    popup.classList.add('popup_open');
+});
+
+/////////////////////////////
+
+
+
+
 let createAccountButton = document.getElementById("createAccountButton");
 createAccountButton.onclick = function () {
     createAccount();
-    document.getElementById("createAccountForm").hidden = false;
+    document.getElementById("div_form").hidden = false;
+    // document.getElementById("createAccountForm").hidden = false;
 }
 
 function createAccount() {
@@ -185,8 +203,11 @@ function createAccount() {
     cancelButton.innerText = "Cancel";
     cancelButton.onclick = function () {
         form.innerHTML = "";
+        document.getElementById("div_form").hidden = true;
     }
     form.appendChild(cancelButton);
+
+    //
 
 }
 
